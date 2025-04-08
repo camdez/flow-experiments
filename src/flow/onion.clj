@@ -8,12 +8,10 @@
   {::to to ::body body})
 
 (defn- random-route [node-cnt hops]
-  (->> #(rand-int node-cnt)
-       repeatedly
-       (partition 2 1)
-       (remove (partial apply =))
-       (take hops)
-       (mapv first)))
+  {:pre [(> node-cnt 1)]}
+  (into []
+        (comp (dedupe) (take hops))
+        (repeatedly #(rand-int node-cnt))))
 
 (defn- router-proc
   ([] {:params {:nodes "Number of nodes"
