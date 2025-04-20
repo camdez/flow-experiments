@@ -1,8 +1,10 @@
 {:paths   ["resources" "src"]
- :deps    {org.clojure/core.async {:git/url "https://github.com/clojure/core.async.git"
+ :deps    {http-kit/http-kit      {:git/url "https://github.com/http-kit/http-kit.git"
+                                   :git/sha "91e46cb71f1360677c96659a074ff92726aff8e5"}
+           org.clojure/core.async {:git/url "https://github.com/clojure/core.async.git"
                                    :git/sha "830bc3b3fa293510019e0021c19c1689d6f10216"}}
  :aliases {:test {:extra-paths ["test"]
-                  :extra-deps {io.github.cognitect-labs/test-runner
-                               {:git/tag "v0.5.1", :git/sha "dfb30dd"}}
-                  :main-opts  ["-m" "cognitect.test-runner"]
-                  :exec-fn    cognitect.test-runner.api/test}}}
+                  :extra-deps  {io.github.cognitect-labs/test-runner
+                                {:git/tag "v0.5.1", :git/sha "dfb30dd"}}
+                  :main-opts   ["-m" "cognitect.test-runner"]
+                  :exec-fn     cognitect.test-runner.api/test}}}
