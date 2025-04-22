@@ -4,18 +4,20 @@
    [flow.utils :as utils]
    [org.httpkit.server :as server]))
 
-;; Work in progress.
+;;; Work in progress.
 
-;; Extend to IRC-like example?
-;; <connect>
-;; /join #room
-;; /send #room "message"
-;; /part #room
-;; <disconnect>
+;; To demo, try connecting from multiple HTTP clients.  Suggest
+;; opening multiple terminals and running:
+;;
+;;     while true; do curl -iN 'http://localhost:8080/'; sleep 5; done
+;;
+;; Then start the system and use the `flow/inject` command to send
+;; messages.  Clients will reconnect after shutdown.
 
 ;; Should these be separate ins or commands in the messages?
 ;;
-;; :joined / :left need to be unified so :left is always after :join.
+;; TODO: :joined / :left need to be unified so :left is always
+;; after :join in message queue.
 ;;
 ;; Seems like it should not be "broadcast", but a channel lookup (who
 ;; is connected?)  Maybe?
@@ -86,6 +88,13 @@
   (Thread/sleep 200) ; <---- flow could still be processing
   (flow/stop (:flow s))
   s)
+
+;; Extend to IRC-like example?
+;; <connect>
+;; /join #room
+;; /send #room "message"
+;; /part #room
+;; <disconnect>
 
 (comment
   (def system (atom (build-system)))
