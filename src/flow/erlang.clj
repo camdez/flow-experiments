@@ -36,7 +36,7 @@
   {:procs
    {:ping {:proc (flow/process #'ping-proc)}
     :pong {:proc (flow/process #'pong-proc)}}
-   :conns [[[:ping :out]] [[:pong :in]]
+   :conns [[[:ping :out] [:pong :in]]
            [[:pong :out] [:ping :pong]]]})
 
 (comment
